@@ -19,27 +19,26 @@ import CARD_DATA from '../data/card-data.json';
 
 const Board = () => {
 
-  // Modify the Board component to use axios to retrieve card data from the end point, using the board endpoint you configured in the setup requirements.
-
   const API_URL_BASE = "https://inspiration-board.herokuapp.com/boards/Becca-Jessica/cards"
   const [cardsList, setCardsList] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
-
-
-  // onDeleteHandler: 
-
-  // .splice(id, 1)
-
   const onDelete = (id) => {
     const cardsListCopy = [...cardsList];
-    for (let i = 0; i < cardsListCopy.length; i++) {
-      if (id === cardsListCopy[i].card.id) {
-        cardsListCopy.splice(i, 1);
-        setCardsList(cardsListCopy);
-        return;
-      }
-    }
+    axios.delete("https://inspiration-board.herokuapp.com/cards/" + id)
+      .then((response) => {
+        for (let i = 0; i < cardsListCopy.length; i++) {
+          if (id === cardsListCopy[i].card.id) {
+            cardsListCopy.splice(i, 1);
+            setCardsList(cardsListCopy);
+            return;
+          }
+        }
+        setErrorMessage('');
+      })
+      .catch((error) => {        
+        setErrorMessage("Card ID#" + id + ": " + error.cause);
+      });    
   }
 
   useEffect(() => {
@@ -51,14 +50,10 @@ const Board = () => {
         setCardsList(apiCardsList);
       })
       .catch((error) => {
-        // Still need to handle errors
         setErrorMessage(error.message);
       });
   }, []);
   
-  // console.log(CARD_DATA.cards[0].text);
-  // console.log(CARD_DATA);
-
   const allCards = (cardsList.map((card) => {
     return <Card 
               key={card.card.id}
@@ -69,9 +64,9 @@ const Board = () => {
             />
   }))
   
-
   return (
     <div className="board">
+      {errorMessage ? <ul className="validation-errors-display"><li className="validation-errors-display__list">{errorMessage}</li></ul> : ''}
       {allCards}
     </div>
   )
