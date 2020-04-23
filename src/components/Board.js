@@ -25,15 +25,29 @@ const Board = () => {
   const [cardsList, setCardsList] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
+
+
+  // onDeleteHandler: 
+
+  // .splice(id, 1)
+
+  const onDelete = (id) => {
+    const cardsListCopy = [...cardsList];
+    for (let i = 0; i < cardsListCopy.length; i++) {
+      if (id === cardsListCopy[i].card.id) {
+        cardsListCopy.splice(i, 1);
+        setCardsList(cardsListCopy);
+        return;
+      }
+    }
+  }
+
   useEffect(() => {
     axios.get(API_URL_BASE)
       .then((response) => {        
         const apiCardsList = response.data.map(card => {
           return card;
         });
-        console.log(apiCardsList);
-        
-        
         setCardsList(apiCardsList);
       })
       .catch((error) => {
@@ -46,7 +60,13 @@ const Board = () => {
   // console.log(CARD_DATA);
 
   const allCards = (cardsList.map((card) => {
-    return <Card key={card.card.id} text={card.card.text} emoji={card.card.emoji}/>
+    return <Card 
+              key={card.card.id}
+              id={card.card.id}
+              text={card.card.text}
+              emoji={card.card.emoji}
+              onDelete={onDelete}
+            />
   }))
   
 

@@ -25,6 +25,10 @@ import './Card.css';
 
 const Card = (props) => {  
 
+  const onDeleteClick = () => {
+    props.onDelete(props.id);
+  }
+
   return (
     <div className="card">
       <div className="card__content">
@@ -35,6 +39,7 @@ const Card = (props) => {
           <p className="card__content-emoji">{emoji.getUnicode(props.emoji)}</p> : null
         }
       </div>
+      <button className="card__delete" onClick={onDeleteClick}>X</button>
     </div>
   )
 }
