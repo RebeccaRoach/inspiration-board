@@ -21,9 +21,7 @@ import './Card.css';
 // access error text = error.errors.text[0]
 // "ok" value is false for bad request, true for success
 
-// to update cards, patch request: https://inspiration-board.herokuapp.com/cards/{id}?{newtext}
-
-const Card = (props) => {  
+const Card = props => {  
 
   const onDeleteClick = () => {
     props.onDelete(props.id);

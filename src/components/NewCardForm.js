@@ -20,6 +20,13 @@ const NewCardForm = props => {
 
   const onSubmit = event => {
     event.preventDefault();
+
+    // to ensure users can never send a bad request
+    // if (content.text === "") {
+    //   alert("To post your note, first enter text.");
+    //   return;
+    // };
+
     props.onAddCard(content);
 
     // clear text fields for next submission
@@ -27,6 +34,14 @@ const NewCardForm = props => {
       text: "",
       emoji: ""
     });
+  }
+
+  const inputValid = field => {
+    if (field !== "") {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   return (
@@ -63,7 +78,7 @@ const NewCardForm = props => {
 }
 
 NewCardForm.propTypes = {
-  onAddCard: PropTypes.func,
+  onAddCard: PropTypes.func.isRequired,
 };
 
 export default NewCardForm;

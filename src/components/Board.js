@@ -19,7 +19,7 @@ import NewCardForm from './NewCardForm';
 
 const Board = ({url, boardName}) => {
 
-  const API_URL_BASE = "https://inspiration-board.herokuapp.com/boards/Becca-Jessica/cards";
+  const API_URL_BASE = url + boardName + "/cards";
 
   const [cardsList, setCardsList] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -39,12 +39,17 @@ const Board = ({url, boardName}) => {
         setErrorMessage('');
       })
       .catch((error) => {        
-        setErrorMessage("Card ID#" + id + ": " + error.cause);
+        setErrorMessage("Card ID #" + id + ": " + error.cause);
       });    
   }
 
   const onAddCard = card => {
     const cardsListCopy = [...cardsList];
+
+    console.log("Card is: ", card);
+    // if (card.text === "") {
+    //   // card = 
+    // }
 
     axios.post(API_URL_BASE, card)
       .then((response) => {
@@ -70,10 +75,13 @@ const Board = ({url, boardName}) => {
     //     }
     // }
       .catch((error) => {
-        console.log(error.text);
+        console.log(error, error.ok);
         setErrorMessage(error.text);
       })    
     }
+
+  
+    console.log("error is now: " + errorMessage);
   
 
   useEffect(() => {
@@ -108,9 +116,9 @@ const Board = ({url, boardName}) => {
   )
 }
 
-// need to indicate props url and boardName passed from App
 Board.propTypes = {
-
+  url: PropTypes.string.isRequired,
+  boardName: PropTypes.string.isRequired
 };
 
 export default Board;
