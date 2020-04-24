@@ -22,10 +22,10 @@ const NewCardForm = props => {
     event.preventDefault();
 
     // to ensure users can never send a bad request
-    // if (content.text === "") {
-    //   alert("To post your note, first enter text.");
-    //   return;
-    // };
+    if (content.text === "") {
+      alert("To post your note, first enter text.");
+      return;
+    };
 
     props.onAddCard(content);
 
@@ -46,12 +46,12 @@ const NewCardForm = props => {
 
   return (
     // added onSubmit to form and values to inputs to reflect state
-    <div className="new-card-form">
-      <form className="new-card-form__form" onSubmit={onSubmit}>
-        <header className="new-card-form new-card-form__header">Post a Note</header>
+      <form className="new-card-form" onSubmit={onSubmit}>
+        <header className="new-card-form__header">Post a Note</header>
+        <div className="new-card-form__form">
           <label htmlFor="text" className="new-card-form__form-label">Text</label>
           <input
-            className="new-card-form__form-textarea"
+            className="new-card-form__form-textarea "
             type="text"
             name="text"
             placeholder="Your text here"
@@ -68,12 +68,9 @@ const NewCardForm = props => {
             onChange={onInputChange}
           />
 
-          <div>
-            {/* changed to input instead of button */}
-            <input type="submit" className="new-card-form__form-button" onSubmit={onSubmit}/>
-          </div>
-      </form>
-    </div>
+          <input type="submit" value="submit a note" className="new-card-form__form-button" onSubmit={onSubmit}/>
+      </div>
+    </form>
   )
 }
 
