@@ -59,8 +59,19 @@ const Board = ({url, boardName}) => {
         setCardsList(cardsListCopy);
         setErrorMessage('');
       })
-      .catch((error) => {        
-        // setErrorMessage("Card ID #" + id + ": " + error.cause);
+
+    //   {
+    //     "ok": false,
+    //     "cause": "validation errors",
+    //     "errors": {
+    //         "text": [
+    //             "invalid text or missing emoji"
+    //         ]
+    //     }
+    // }
+      .catch((error) => {
+        console.log(error.text);
+        setErrorMessage(error.text);
       })    
     }
   
