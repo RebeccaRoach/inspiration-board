@@ -41,6 +41,28 @@ const Board = () => {
       });    
   }
 
+  const onAddCard = (card) => {
+    const cardsListCopy = [...cardsList];
+
+    axios.post(API_URL_BASE, card)
+      .then((response) => {
+        console.log(response);
+        const id = response.data.card.id;
+        const newCard = {
+          id: id,
+          text: card.text,
+          emoji: card.emoji
+        }
+        cardsListCopy.unshift({"card": newCard });
+        setCardsList(cardsListCopy);
+        setErrorMessage('');
+      })
+      .catch((error) => {        
+        // setErrorMessage("Card ID#" + id + ": " + error.cause);
+      })    
+    }
+  
+
   useEffect(() => {
     axios.get(API_URL_BASE)
       .then((response) => {        
@@ -66,11 +88,13 @@ const Board = () => {
   
   return (
     <div className="board">
+      <NewCardForm onAddCard={onAddCard}/>
       {errorMessage ? <ul className="validation-errors-display"><li className="validation-errors-display__list">{errorMessage}</li></ul> : ''}
       {allCards}
     </div>
   )
-};
+}
+
 Board.propTypes = {
 
 };
