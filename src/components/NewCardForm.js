@@ -21,10 +21,17 @@ const NewCardForm = props => {
   const onSubmit = event => {
     event.preventDefault();
     props.onAddCard(content);
+
+    // clear text fields for next submission
+    setContent({
+      text: "",
+      emoji: ""
+    });
   }
 
   return (
-    <form className="new-card-form" >
+    // added onSubmit to form and values to inputs to reflect state
+    <form className="new-card-form" onSubmit={onSubmit}>
       <header className="new-card-form new-card-form__header">Post a Note</header>
       <div className="new-card-form__form">
         <label htmlFor="text" className="new-card-form__form-label">Text</label>
@@ -33,20 +40,22 @@ const NewCardForm = props => {
           type="text"
           name="text"
           placeholder="Your text here"
+          value={content.text}
           onChange={onInputChange}
-        ></input>
-        
+        />
         <label htmlFor="emoji" className="new-card-form__form-label">Emoji</label>
         <input
           className="new-card-form__form-textarea"
           type="text"
           name="emoji"
           placeholder="Emoji name"
+          value={content.emoji}
           onChange={onInputChange}
-        ></input>
+        />
 
         <div>
-          <button className="new-card-form__form-button" onClick={onSubmit}>Submit</button>
+          {/* changed to input instead of button */}
+          <input type="submit" className="new-card-form__form-button" onSubmit={onSubmit}/>
         </div>
       </div>
     </form>
