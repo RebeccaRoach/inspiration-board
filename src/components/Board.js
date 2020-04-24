@@ -5,7 +5,7 @@ import axios from 'axios';
 import './Board.css';
 import Card from './Card';
 import NewCardForm from './NewCardForm';
-import CARD_DATA from '../data/card-data.json';
+// import CARD_DATA from '../data/card-data.json';
 
 // Postman request for getting all boards: https://inspiration-board.herokuapp.com/boards
 // array of objects. Each obj has a "boards" key with value as object with k-v pairs
@@ -17,14 +17,16 @@ import CARD_DATA from '../data/card-data.json';
 //   }
 // }
 
-const Board = () => {
+const Board = ({url, boardName}) => {
 
-  const API_URL_BASE = "https://inspiration-board.herokuapp.com/boards/Becca-Jessica/cards"
+  const API_URL_BASE = "https://inspiration-board.herokuapp.com/boards/Becca-Jessica/cards";
+
   const [cardsList, setCardsList] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const onDelete = (id) => {
+  const onDelete = id => {
     const cardsListCopy = [...cardsList];
+
     axios.delete("https://inspiration-board.herokuapp.com/cards/" + id)
       .then((response) => {
         for (let i = 0; i < cardsListCopy.length; i++) {
@@ -41,7 +43,7 @@ const Board = () => {
       });    
   }
 
-  const onAddCard = (card) => {
+  const onAddCard = card => {
     const cardsListCopy = [...cardsList];
 
     axios.post(API_URL_BASE, card)
@@ -58,7 +60,7 @@ const Board = () => {
         setErrorMessage('');
       })
       .catch((error) => {        
-        // setErrorMessage("Card ID#" + id + ": " + error.cause);
+        // setErrorMessage("Card ID #" + id + ": " + error.cause);
       })    
     }
   
@@ -84,7 +86,7 @@ const Board = () => {
               emoji={card.card.emoji}
               onDelete={onDelete}
             />
-  }))
+  }));
   
   return (
     <div className="board">
@@ -95,6 +97,7 @@ const Board = () => {
   )
 }
 
+// need to indicate props url and boardName passed from App
 Board.propTypes = {
 
 };
