@@ -36,14 +36,6 @@ const NewCardForm = props => {
     });
   }
 
-  const inputValid = field => {
-    if (field !== "") {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   return (
     // added onSubmit to form and values to inputs to reflect state
       <form className="new-card-form" onSubmit={onSubmit}>
@@ -67,7 +59,6 @@ const NewCardForm = props => {
             value={content.emoji}
             onChange={onInputChange}
           />
-
           <input type="submit" value="submit a note" className="new-card-form__form-button" onSubmit={onSubmit}/>
       </div>
     </form>
