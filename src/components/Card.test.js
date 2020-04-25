@@ -13,10 +13,10 @@ describe('Card', () => {
     // Arrange-Act
     const { asFragment } = render(
       <Card
-        // id={props.id}
-        // text={props.text}
-        // emoji={props.emoji}
-        // onDelete={props.onDelete}
+        id={9000}
+        text="this is a card"
+        emoji="wave"
+        onDelete={() => { }}
       />
     );
 
