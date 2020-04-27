@@ -42,7 +42,11 @@ exports[`NewCardForm that it matches the existing snapshot 1`] = `
       <input
         class="new-card-form__form-button"
         type="submit"
+<<<<<<< HEAD
         value="Submit"
+=======
+        value="submit a note"
+>>>>>>> f2c404570c1565c621bd57cd567c1126b2b29f91
       />
     </div>
   </form>

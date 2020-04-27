@@ -55,7 +55,6 @@ const NewCardForm = props => {
             value={content.emoji}
             onChange={onInputChange}
           />
-
           <input type="submit" value="Submit" className="new-card-form__form-button"/>
       </div>
     </form>

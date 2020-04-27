@@ -11,12 +11,20 @@ exports[`Card that it matches the existing snapshot 1`] = `
       <p
         class="card__content-text"
       >
+<<<<<<< HEAD
         Coding is fun!
+=======
+        this is a card
+>>>>>>> f2c404570c1565c621bd57cd567c1126b2b29f91
       </p>
       <p
         class="card__content-emoji"
       >
+<<<<<<< HEAD
         🍰
+=======
+        👋
+>>>>>>> f2c404570c1565c621bd57cd567c1126b2b29f91
       </p>
     </div>
     <button
