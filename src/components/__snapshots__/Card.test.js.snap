@@ -10,7 +10,14 @@ exports[`Card that it matches the existing snapshot 1`] = `
     >
       <p
         class="card__content-text"
-      />
+      >
+        Coding is fun!
+      </p>
+      <p
+        class="card__content-emoji"
+      >
+        🍰
+      </p>
     </div>
     <button
       class="card__delete"

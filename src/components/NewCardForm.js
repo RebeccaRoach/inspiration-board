@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import emoji from 'emoji-dictionary';
 import './NewCardForm.css';
-
-// const EMOJI_LIST = ["", "heart_eyes", "beer", "clap", "sparkling_heart", "heart_eyes_cat", "dog"]
 
 const NewCardForm = props => {
 
@@ -36,16 +33,7 @@ const NewCardForm = props => {
     });
   }
 
-  const inputValid = field => {
-    if (field !== "") {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   return (
-    // added onSubmit to form and values to inputs to reflect state
       <form className="new-card-form" onSubmit={onSubmit}>
         <header className="new-card-form__header">Post a Note</header>
         <div className="new-card-form__form">
@@ -68,7 +56,7 @@ const NewCardForm = props => {
             onChange={onInputChange}
           />
 
-          <input type="submit" value="submit a note" className="new-card-form__form-button" onSubmit={onSubmit}/>
+          <input type="submit" value="Submit" className="new-card-form__form-button"/>
       </div>
     </form>
   )

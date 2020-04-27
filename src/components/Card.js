@@ -4,23 +4,6 @@ import emoji from 'emoji-dictionary';
 
 import './Card.css';
 
-// https://inspiration-board.herokuapp.com/boards/Becca-Jessica/cards?text="Testing card!"&emoji=🤔
-// ^^ post request for making new cards
-
-// If post request fails, we get this:
-// {
-//   "ok": false,
-//   "cause": "validation errors",
-//   "errors": {
-//       "text": [
-//           "invalid text or missing emoji"
-//       ]
-//   }
-// }
-
-// access error text = error.errors.text[0]
-// "ok" value is false for bad request, true for success
-
 const Card = props => {  
 
   const onDeleteClick = () => {

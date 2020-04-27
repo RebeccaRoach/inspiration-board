@@ -2,17 +2,17 @@
 
 exports[`NewCardForm that it matches the existing snapshot 1`] = `
 <DocumentFragment>
-  <div
+  <form
     class="new-card-form"
   >
-    <form
+    <header
+      class="new-card-form__header"
+    >
+      Post a Note
+    </header>
+    <div
       class="new-card-form__form"
     >
-      <header
-        class="new-card-form new-card-form__header"
-      >
-        Post a Note
-      </header>
       <label
         class="new-card-form__form-label"
         for="text"
@@ -20,7 +20,7 @@ exports[`NewCardForm that it matches the existing snapshot 1`] = `
         Text
       </label>
       <input
-        class="new-card-form__form-textarea"
+        class="new-card-form__form-textarea "
         name="text"
         placeholder="Your text here"
         type="text"
@@ -39,13 +39,12 @@ exports[`NewCardForm that it matches the existing snapshot 1`] = `
         type="text"
         value=""
       />
-      <div>
-        <input
-          class="new-card-form__form-button"
-          type="submit"
-        />
-      </div>
-    </form>
-  </div>
+      <input
+        class="new-card-form__form-button"
+        type="submit"
+        value="Submit"
+      />
+    </div>
+  </form>
 </DocumentFragment>
 `;
